@@ -1,0 +1,21 @@
+import seaborn as sns
+import pandas as pd
+import plotly.express as px
+diamonds_df = pd.read_csv(diamonds_url)
+diamonds_df.info()
+diamonds_df.describe()
+diamonds_df.describe(include=object)
+diamonds_df['price_per_carat'] = diamonds_df['price']/diamonds_df['carat']
+### In this exercise, we will explore and create a heatmap. We will use the flights dataset
+# from the seaborn library to generate a heatmap depicting the number of passengers
+# per month across the years 1949-1960:
+flights_df = sns.load_dataset('flights')
+
+#Now we need to pivot the dataset on the required variables using the pivot() function before
+#generating the heatmap. The pivot function first takes as arguments the feature that will be displayed in rows,
+#then the one displayed in columns, and finally the feature whose variation we are interested in observing. 
+#It uses unique values from specified indexes/columns to form axes of the resulting DataFrame:
+
+
+df_pivoted = flights_df.pivot("month", "year", "passengers")
+ax = sns.heatmap(df_pivoted)
